@@ -26,11 +26,13 @@
   const handleSubmit = () => {
     if(options.url === '') {
         alert("url é obrigatória")
+        return
     }
 
     const searchParams = new URLSearchParams(options);
+    const url = `${baseURL}/create?${searchParams.toString()}`
 
-    window.open(`${baseURL}/create?${searchParams.toString()}`, '_blank')
+    window.open(url, '_blank')
   }
 </script>
 
