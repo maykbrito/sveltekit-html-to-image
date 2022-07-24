@@ -1,6 +1,5 @@
 <script>
   import Input from "./Input.svelte";
-
   import { BASE_URL } from '../lib/Env';
 
   let baseURL;
@@ -19,8 +18,8 @@
     deviceScaleFactor: "2",
     waitUntil: "load",
     waitForElement: "",
-    waitTime: "500",
-    quality: "80",
+    waitTime: "2000",
+    quality: "100",
     url: "",
   }
 
