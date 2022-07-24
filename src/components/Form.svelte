@@ -1,26 +1,38 @@
 <script>
-    import Input from "./Input.svelte";
+  import Input from "./Input.svelte";
 
-    $:  options = {
-        screenWidth: "1440",
-        screenHeight: "",
-        deviceScaleFactor: "2",
-        waitUntil: "load",
-        waitForElement: "",
-        waitTime: "500",
-        quality: "80",
-        url: "",
+  import { BASE_URL } from '../lib/Env';
+
+  let baseURL;
+
+  if (process.env.NODE_ENV === 'production') {
+      // For production
+      baseURL = process.env.BASE_URL;
+  } else {
+      // For development
+      baseURL = BASE_URL;
+  }
+
+  $:  options = {
+    screenWidth: "1440",
+    screenHeight: "",
+    deviceScaleFactor: "2",
+    waitUntil: "load",
+    waitForElement: "",
+    waitTime: "500",
+    quality: "80",
+    url: "",
+  }
+
+  const handleSubmit = () => {
+    if(options.url === '') {
+        alert("url é obrigatória")
     }
 
-    const handleSubmit = () => {
-        if(options.url === '') {
-            alert("url é obrigatória")
-        }
+    const searchParams = new URLSearchParams(options);
 
-        const searchParams = new URLSearchParams(options);
-
-        window.open('http://127.0.0.1:5173/create?' + searchParams.toString(), '_blank')
-    }
+    window.open(`${baseURL}/create?${searchParams.toString()}`, '_blank')
+  }
 </script>
 
 <div class="bg-gray-100">
